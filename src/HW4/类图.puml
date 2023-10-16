@@ -1,0 +1,49 @@
+@startuml
+
+interface Connection {
+    +connect(): void
+}
+
+interface ConnectionFactory {
+    +buildConnection(): Connection
+}
+
+class HTTPConnection {
+    +connect(): void
+}
+
+class HTTPConnectionFactory {
+    +buildConnection(): Connection
+}
+
+class IMAPConnection {
+    +connect(): void
+}
+
+class IMAPConnectionFactory {
+    +buildConnection(): Connection
+}
+
+class POP3Connection {
+    +connect(): void
+}
+
+class POP3ConnectionFactory {
+    +buildConnection(): Connection
+}
+Connection <--ConnectionFactory:creat
+Connection <|-- HTTPConnection
+Connection <|-- IMAPConnection
+Connection <|-- POP3Connection
+
+ConnectionFactory <|-- HTTPConnectionFactory
+ConnectionFactory <|-- IMAPConnectionFactory
+ConnectionFactory <|-- POP3ConnectionFactory
+HTTPConnectionFactory..>HTTPConnection:creat
+
+IMAPConnectionFactory..>IMAPConnection:creat
+POP3ConnectionFactory..>POP3Connection:creat
+Client --> ConnectionFactory
+Client --> Connection
+
+@enduml
