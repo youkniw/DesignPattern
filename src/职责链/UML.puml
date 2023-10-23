@@ -1,0 +1,28 @@
+@startuml
+
+abstract class DataFilter {
+    -successor: DataFilter
+    +setSuccessor(successor: DataFilter)
+    {abstract} +filter()
+}
+
+class CharacterFilter {
+    +filter()
+}
+
+class DataTypeFilter {
+    +filter()
+}
+
+class ValidationFilter {
+    +filter()
+}
+
+DataFilter <|-- CharacterFilter
+DataFilter <|-- DataTypeFilter
+DataFilter <|-- ValidationFilter
+
+CharacterFilter -right-> DataTypeFilter
+DataTypeFilter -right-> ValidationFilter
+
+@enduml

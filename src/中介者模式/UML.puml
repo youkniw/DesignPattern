@@ -1,0 +1,56 @@
+@startuml
+
+abstract class SubSystem {
+    -name: String
+    -mediator: Mediator
+    +contact(msg: String)
+    {abstract} +getMessage(msg: String)
+}
+
+class TCsubSystem {
+    +getMessage(msg: String)
+}
+
+class TASubsystem {
+    +getMessage(msg: String)
+}
+
+class HSubsystem {
+    +getMessage(msg: String)
+}
+
+class RSubsystem {
+    +getMessage(msg: String)
+}
+
+class ASubsystem {
+    +getMessage(msg: String)
+}
+
+interface Mediator {
+    +contact(msg: String, system: SubSystem)
+}
+
+class MediatorImpl {
+    -subSystemList: List<SubSystem>
+    -tCsubsystem: TCsubSystem
+    -taSubsystem: TASubsystem
+    -rSubsystem: RSubsystem
+    -aSubsystem: ASubsystem
+    -hSubsystem: HSubsystem
+    +settCsubsystem(tCsubsystem: TCsubSystem)
+    +setTaSubsystem(taSubsystem: TASubsystem)
+    +setrSubsystem(rSubsystem: RSubsystem)
+    +setaSubsystem(aSubsystem: ASubsystem)
+    +sethSubsystem(hSubsystem: HSubsystem)
+    +contact(msg: String, system: SubSystem)
+}
+
+SubSystem <|-- TCsubSystem
+SubSystem <|-- TASubsystem
+SubSystem <|-- HSubsystem
+SubSystem <|-- RSubsystem
+SubSystem <|-- ASubsystem
+Mediator <|-- MediatorImpl
+Mediator --->SubSystem:use
+@enduml

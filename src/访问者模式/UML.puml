@@ -1,0 +1,50 @@
+@startuml
+
+interface Analyzer {
+    {abstract} +analyze(code: Code)
+}
+
+class Analyzer1 {
+    +analyze(code: Code)
+}
+
+class Analyzer2 {
+    +analyze(code: Code)
+}
+
+class Analyzer3 {
+    +analyze(code: Code)
+}
+
+class ClassExample {
+    -name: String
+    -lines: int
+    -vars: List<String>
+    -methods: Map<String, Integer>
+    +ClassExample(name: String)
+    +addVar(var: String)
+    +addMethod(method: String, lines: int)
+    +getName(): String
+    +getLines(): int
+    +getVars(): List<String>
+    +getMethods(): Map<String, Integer>
+}
+
+class Code {
+    -lines: int
+    -classList: List<ClassExample>
+    +getLines(): int
+    +getClassList(): List<ClassExample>
+    +addClass(classExample: ClassExample)
+    +accept(analyzer: Analyzer)
+}
+
+Analyzer <|-- Analyzer1
+Analyzer <|-- Analyzer2
+Analyzer <|-- Analyzer3
+
+Code <--o ClassExample : Contains
+
+Code --> Analyzer : uses
+
+@enduml

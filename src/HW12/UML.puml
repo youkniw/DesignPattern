@@ -1,0 +1,37 @@
+@startuml
+
+abstract class Display {
+    {abstract} +getText(): String
+    +show()
+}
+
+class StringDisplay {
+    -str: String
+    +StringDisplay(str: String)
+    +getText(): String
+}
+
+abstract class Border {
+    -display: Display
+    +Border(display: Display)
+}
+
+class HeadBorder {
+    -str: String
+    +HeadBorder(display: Display, str: String)
+    +getText(): String
+}
+
+class TailBorder {
+    -str: String
+    +TailBorder(display: Display, str: String)
+    +getText(): String
+}
+StringDisplay --|>Display
+Border --|>Display
+Border o-->Display
+Border <|-- HeadBorder
+Border <|-- TailBorder
+
+
+@enduml

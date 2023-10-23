@@ -1,0 +1,32 @@
+@startuml
+
+interface Strategy {
+    {abstract} +algorithm()
+}
+
+class PreCopyStrategy {
+    +algorithm()
+}
+
+class PostCopyStrategy {
+    +algorithm()
+}
+
+class CRRTMotionStrategy {
+    +algorithm()
+}
+
+class Platform {
+    -strategy: Strategy
+    +Platform(strategy: Strategy)
+    +lookAlgorithm()
+}
+
+Strategy<|... PreCopyStrategy
+Strategy<|... PostCopyStrategy
+Strategy<|... CRRTMotionStrategy
+
+
+Platform o--> Strategy
+
+@enduml

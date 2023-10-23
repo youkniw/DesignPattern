@@ -1,0 +1,29 @@
+@startuml
+abstract class Entry {
+    {abstract} +getShare(inf: String)
+    +add(entry: Entry)
+    +share(entry: Entry)
+}
+
+class Group {
+    -name: String
+    -group: ArrayList<Entry>
+    +Group(name: String)
+    +getShare(inf: String)
+    +add(entry: Entry)
+}
+
+class Member {
+    -name: String
+    +Member(name: String)
+    +share(entry: Entry, inf: String)
+    +getShare(inf: String)
+}
+
+Entry <|-- Group
+Entry <|-- Member
+
+ Entry <--o Group
+Entry<--o Member
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+
+class Account {
+    +save()
+}
+
+class Image {
+    +save()
+}
+
+class Message {
+    +save()
+}
+
+class Phone {
+    -account: Account
+    -message: Message
+    -image: Image
+    +Phone(account: Account, message: Message, image: Image)
+    +save()
+}
+
+Phone --> Account
+Phone --> Message
+Phone --> Image
+
+@enduml

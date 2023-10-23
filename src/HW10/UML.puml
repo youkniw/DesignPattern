@@ -1,0 +1,53 @@
+@startuml
+interface Filter {
+    {abstract} +addFilter()
+}
+
+class BlurFilter {
+    +addFilter()
+}
+
+class CutoutFilter {
+    +addFilter()
+}
+
+class SharpenFilter {
+    +addFilter()
+}
+
+class TextureFilter {
+    +addFilter()
+}
+
+abstract class Image {
+    -filter: Filter
+    +Image(Filter filter)
+    {abstract} +process()
+}
+
+class BMPImage {
+    +BMPImage(Filter filter)
+    +process()
+}
+
+class GIFImage {
+    +GIFImage(Filter filter)
+    +process()
+}
+
+class JPGImage {
+    +JPGImage(Filter filter)
+    +process()
+}
+
+Filter --|> BlurFilter
+Filter --|> CutoutFilter
+Filter --|> SharpenFilter
+Filter --|> TextureFilter
+Image <|-- BMPImage
+Image <|-- GIFImage
+Image <|-- JPGImage
+Image o-->Filter
+
+
+@enduml
