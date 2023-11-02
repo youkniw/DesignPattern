@@ -1,0 +1,43 @@
+@startuml
+
+class Note {
+    -msg: String
+    +Note()
+    +Note(msg: String)
+    +getMsg(): String
+    +setMsg(msg: String)
+}
+
+interface Memento
+
+class APPMemento {
+    -note: Note
+    +APPMemento(note: Note)
+    +getNote(): Note
+    +setNote(note: Note)
+}
+
+class Application {
+    -note: Note
+    +Application(note: Note)
+    +saveState(): APPMemento
+    +recoverState(memento: Memento)
+    +getNote(): Note
+    +setNote(note: Note)
+}
+
+class APPStateCaretaker {
+    -front: Stack<Memento>
+    -back: Stack<Memento>
+    +getFront(): Memento
+    +getBack(): Memento
+    +saveMemento(memento: Memento)
+}
+
+Note --> Application
+Application --> APPMemento : Creates
+Application --> APPStateCaretaker : Uses
+APPStateCaretaker --> Memento : Aggregates
+APPMemento --> Memento : Implements
+
+@enduml

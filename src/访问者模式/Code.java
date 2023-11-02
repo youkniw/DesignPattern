@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Code {
     private int lines;
-    private List<ClassExample> classList = new ArrayList<ClassExample>();
+    private List<ClassExample> classList = new ArrayList<>();
 
     public int getLines() {
         return lines;
